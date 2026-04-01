@@ -1,1 +1,138 @@
-body { background: #222; color: white; text-align: center; font-family: sans-serif; } button { padding: 10px; cursor: pointer; } 
+/* CONFIGURACIÓN BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-image: url('fondo.avif'); 
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: 300px;
+    color: #333;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.93);
+    z-index: -1;
+}
+
+/* ENCABEZADO */
+.hero {
+    height: 33vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    animation: bajar 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* NAVEGACIÓN */
+.main-nav {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    list-style: none;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #5d4037;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+
+.main-nav a:hover {
+    color: #2e1a12;
+    transform: translateY(-4px);
+    letter-spacing: 3.5px;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.container {
+    max-width: 850px;
+    margin: 40px auto 80px auto;
+    text-align: center;
+    padding: 60px 50px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+    border-top: 4px solid #5d4037;
+    animation: subir 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #2e1a12;
+    margin-bottom: 25px;
+}
+
+/* --- ESTILO DEL MODAL (VENTANA DEL PDF) --- */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro detrás del PDF */
+    display: none; /* Escondido por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Mostrar el modal cuando se hace clic en el enlace */
+.modal:target {
+    display: flex;
+}
+
+.modal-content {
+    width: 80%;
+    height: 90%;
+    background: white;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 20px;
+    background: #5d4037;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+/* ANIMACIONES */
+@keyframes bajar { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes subir { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
