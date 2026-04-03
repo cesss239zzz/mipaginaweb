@@ -13,9 +13,10 @@ body {
     background-size: 300px;
     background-color: #f9f7f2;
     color: #333;
+    overflow-x: hidden; /* Evita que la página se mueva hacia los lados en móvil */
 }
 
-/* Capa de legibilidad sobre el fondo estampado */
+/* Capa de legibilidad */
 body::before {
     content: "";
     position: fixed;
@@ -26,27 +27,29 @@ body::before {
 
 /* ENCABEZADO (HERO) */
 .hero {
-    height: 45vh;
+    height: 40vh;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
                 url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .brand-name {
     font-family: 'Playfair Display', serif;
     color: #fff;
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 8vw, 4.5rem); /* Ajusta el tamaño según la pantalla */
     text-transform: uppercase;
     letter-spacing: 10px;
-    animation: bajar 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    padding: 0 20px;
+    animation: bajar 1.2s ease-out;
 }
 
-/* NAVEGACIÓN CON ANIMACIONES RECUPERADAS */
+/* NAVEGACIÓN ANIMADA */
 .main-nav {
     background-color: #fff;
-    padding: 20px 0;
+    padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -56,8 +59,9 @@ body::before {
 .main-nav ul {
     display: flex;
     justify-content: center;
-    gap: 45px;
+    gap: clamp(15px, 4vw, 45px);
     list-style: none;
+    flex-wrap: wrap; /* Importante para móvil */
 }
 
 .main-nav a {
@@ -65,32 +69,31 @@ body::before {
     color: #5d4037;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
     display: inline-block;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* EFECTO AL PASAR EL MOUSE EN EL MENÚ */
 .main-nav a:hover {
     color: #d4a373;
-    transform: translateY(-5px); /* Movimiento hacia arriba */
-    letter-spacing: 3.5px; /* Separación de letras */
-    text-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    letter-spacing: 3px;
 }
 
-/* CONTENEDOR PRINCIPAL (TARJETA PREMIUM) */
+/* CONTENEDOR PRINCIPAL (TARJETA RESPONSIVA) */
 .container {
     max-width: 800px;
-    margin: -60px auto 80px auto; 
+    width: 90%; /* Se adapta al ancho del celular */
+    margin: -50px auto 60px auto; 
     text-align: center;
-    padding: 70px 50px;
+    padding: 60px 40px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     position: relative;
     z-index: 10;
-    animation: subir 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: subir 1.5s ease-out;
 }
 
 .label {
@@ -104,38 +107,16 @@ body::before {
 
 .main-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
     color: #2c1e16;
     margin-bottom: 25px;
     line-height: 1.1;
 }
 
 .description {
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 3vw, 1.15rem);
     line-height: 1.8;
     color: #666;
-    margin-bottom: 35px;
-}
-
-/* BOTÓN PREMIUM */
-.btn-primary {
-    display: inline-block;
-    padding: 18px 40px;
-    background-color: #2c1e16;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    transition: all 0.4s ease;
-}
-
-.btn-primary:hover {
-    background-color: #d4a373;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
 }
 
 /* MODAL DEL PDF */
@@ -146,11 +127,23 @@ body::before {
     display: none; justify-content: center; align-items: center; z-index: 1000;
 }
 .modal:target { display: flex; }
-.modal-content { width: 90%; height: 90%; background: white; border-radius: 8px; position: relative; overflow: hidden; }
-.close-btn { position: absolute; top: 20px; right: 20px; background: #2c1e16; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; z-index: 1100; }
+.modal-content { width: 95%; height: 90%; background: white; border-radius: 8px; position: relative; overflow: hidden; }
+.close-btn { position: absolute; top: 15px; right: 15px; background: #2c1e16; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; z-index: 1100; font-size: 0.8rem; }
 
 /* FOOTER */
-.main-footer { text-align: center; padding: 50px; color: #bbb; font-size: 0.8rem; letter-spacing: 1px; }
+.main-footer { text-align: center; padding: 40px; color: #bbb; font-size: 0.75rem; }
+
+/* --- AJUSTES ESPECÍFICOS PARA MÓVIL --- */
+@media (max-width: 600px) {
+    .hero { height: 35vh; }
+    .main-nav { padding: 10px 0; }
+    .main-nav ul { gap: 12px; }
+    .main-nav a { font-size: 0.65rem; letter-spacing: 1px; }
+    .container { 
+        padding: 40px 20px; 
+        margin-top: -30px; 
+    }
+}
 
 /* ANIMACIONES */
 @keyframes bajar { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
