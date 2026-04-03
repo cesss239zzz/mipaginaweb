@@ -1,4 +1,4 @@
-/* CONFIGURACIÓN BASE */
+/* CONFIGURACIÓN GENERAL */
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
     background-size: 300px;
     background-color: #f9f7f2;
     color: #333;
-    overflow-x: hidden; /* Evita que la página se mueva hacia los lados en móvil */
+    overflow-x: hidden;
 }
 
 /* Capa de legibilidad */
@@ -25,7 +25,7 @@ body::before {
     z-index: -1;
 }
 
-/* ENCABEZADO (HERO) */
+/* HERO SECTION */
 .hero {
     height: 40vh;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
@@ -39,14 +39,14 @@ body::before {
 .brand-name {
     font-family: 'Playfair Display', serif;
     color: #fff;
-    font-size: clamp(2.5rem, 8vw, 4.5rem); /* Ajusta el tamaño según la pantalla */
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     text-transform: uppercase;
     letter-spacing: 10px;
     padding: 0 20px;
     animation: bajar 1.2s ease-out;
 }
 
-/* NAVEGACIÓN ANIMADA */
+/* NAVEGACIÓN Y ANIMACIONES */
 .main-nav {
     background-color: #fff;
     padding: 15px 0;
@@ -61,7 +61,7 @@ body::before {
     justify-content: center;
     gap: clamp(15px, 4vw, 45px);
     list-style: none;
-    flex-wrap: wrap; /* Importante para móvil */
+    flex-wrap: wrap;
 }
 
 .main-nav a {
@@ -81,10 +81,10 @@ body::before {
     letter-spacing: 3px;
 }
 
-/* CONTENEDOR PRINCIPAL (TARJETA RESPONSIVA) */
+/* TARJETA PRINCIPAL RESPONSIVA */
 .container {
     max-width: 800px;
-    width: 90%; /* Se adapta al ancho del celular */
+    width: 90%;
     margin: -50px auto 60px auto; 
     text-align: center;
     padding: 60px 40px;
@@ -119,30 +119,69 @@ body::before {
     color: #666;
 }
 
-/* MODAL DEL PDF */
+/* MODALES */
 .modal {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
     display: none; justify-content: center; align-items: center; z-index: 1000;
 }
 .modal:target { display: flex; }
+
 .modal-content { width: 95%; height: 90%; background: white; border-radius: 8px; position: relative; overflow: hidden; }
-.close-btn { position: absolute; top: 15px; right: 15px; background: #2c1e16; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; z-index: 1100; font-size: 0.8rem; }
+
+.modal-content-small {
+    background: white;
+    padding: 50px 30px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    animation: subir 0.4s ease-out;
+}
+
+.close-btn {
+    position: absolute; top: 15px; right: 15px;
+    background: #2c1e16; color: white;
+    padding: 8px 15px; text-decoration: none; border-radius: 4px;
+}
+
+/* ICONOS DE REDES SOCIALES */
+.social-icons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.social-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s;
+}
+
+.social-link i { font-size: 3rem; }
+.social-link span { font-size: 0.7rem; font-weight: bold; color: #555; }
+
+.insta i {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.whatsapp i { color: #25D366; }
+
+.social-link:hover { transform: scale(1.2); }
 
 /* FOOTER */
 .main-footer { text-align: center; padding: 40px; color: #bbb; font-size: 0.75rem; }
 
-/* --- AJUSTES ESPECÍFICOS PARA MÓVIL --- */
+/* AJUSTES MÓVIL */
 @media (max-width: 600px) {
-    .hero { height: 35vh; }
-    .main-nav { padding: 10px 0; }
-    .main-nav ul { gap: 12px; }
-    .main-nav a { font-size: 0.65rem; letter-spacing: 1px; }
-    .container { 
-        padding: 40px 20px; 
-        margin-top: -30px; 
-    }
+    .main-nav ul { gap: 10px; }
+    .container { padding: 40px 20px; }
 }
 
 /* ANIMACIONES */
